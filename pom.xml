@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.springbootdev.examples</groupId>
+	<groupId>com.amazingco.structure</groupId>
 	<artifactId>amazingco-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>spring-boot-data-jpa-example</name>
-	<description>Demo project for Spring Boot</description>
+	<name>amazingco-api</name>
+	<description>Amazing co api to get organizational levels</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
