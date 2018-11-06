@@ -10,8 +10,8 @@ services:
       - MYSQL_PASSWORD=test123
     volumes:
       - /data/mysql
-  spring-boot-jpa-app:
-    image: spring-boot-jpa-image
+  amazingco-api-app:
+    image: amazingco-api-image
     build:
       context: ./
       dockerfile: Dockerfile
@@ -20,4 +20,4 @@ services:
     ports:
       - 8087:8080
     volumes:
-      - /data/spring-boot-app
+      - /data/amazingco-app
