@@ -35,7 +35,7 @@ public class SwaggerConfig {
 			version += "-" + buildNumber;
 		}
 
-		return new ApiInfoBuilder().title("Amezing co Org Service").description("Amezing co").version(version)
+		return new ApiInfoBuilder().title("Amazing co Org Service").description("Amezing co").version(version)
 				.build();
 	}
 
