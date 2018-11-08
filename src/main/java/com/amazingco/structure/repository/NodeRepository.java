@@ -9,7 +9,10 @@ import com.amazingco.structure.entity.Node;
 
 public interface NodeRepository extends JpaRepository<Node, Long> {
 	
-	  @Query("SELECT * FROM Node n WHERE n.parentId = ?1")
+	  @Query("SELECT n FROM Node n WHERE n.parentId = ?1")
 	  List<Node> findAllByParentId(Long nodeId);
+	  
+	  @Query("SELECT n FROM Node n WHERE n.height = 0")
+	  Node findRootNode();
 
 }
