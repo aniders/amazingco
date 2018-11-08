@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.amazingco.structure.entity.Node;
-import com.amazingco.structure.repository.NodeRepository;
+import com.amazingco.structure.service.NodeService;
+
+import io.swagger.annotations.ApiOperation;
 
 import java.util.List;
 
@@ -13,36 +15,33 @@ import java.util.List;
 public class NodeController {
 
 	@Autowired
-	private NodeRepository nodeRepository;
+	private NodeService nodeService;
 
-	@PostMapping("/nodess")
+	@PostMapping("/nodes")
 	public Node create(@RequestBody Node node) {
-		return nodeRepository.save(node);
+		return nodeService.save(node);
 	}
 
 	@GetMapping("/nodes")
 	public List<Node> findAll() {
-		return nodeRepository.findAll();
+		return nodeService.getAllNodes();
+	}
+
+	@GetMapping("/nodes/{node_id}")
+	@ApiOperation(value = "Get all children nodes of a given node", produces = "application/json")
+	public List<Node> findAllChildren(@PathVariable("node_id") Long nodeId) {
+		return nodeService.getAllChildren(nodeId);
 	}
 
 	@PutMapping("/nodes/{node_id}")
+	@ApiOperation(value = "Change parent node of given node", produces = "application/json")
 	public Node update(@PathVariable("node_id") Long nodeId, @RequestBody Node nodeObject) {
-		Node node = nodeRepository.findOne(nodeId);
-		node.setParentId(nodeObject.getParentId());
-//        node.setRootId(nodeObject.getRootId());
-		node.setHeight(nodeObject.getHeight());
-		return nodeRepository.save(node);
+		return nodeService.updateNode(nodeId, nodeObject);
 	}
 
 	@DeleteMapping("/nodes/{node_id}")
 	public List<Node> delete(@PathVariable("node_id") Long nodeId) {
-		nodeRepository.delete(nodeId);
-		return nodeRepository.findAll();
+		return nodeService.deleteNode(nodeId);
 	}
 
-	@GetMapping("/nodes/{node_id}")
-	@ResponseBody
-	public Node findByUserId(@PathVariable("node_id") Long nodeId) {
-		return nodeRepository.findOne(nodeId);
-	}
 }
